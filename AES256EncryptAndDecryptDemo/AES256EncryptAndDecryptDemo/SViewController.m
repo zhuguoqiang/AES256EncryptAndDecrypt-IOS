@@ -8,8 +8,26 @@
 
 #import "SViewController.h"
 #import "NSData+EncryptAndDecrypt.h"
+#import "CryptUtils.h"
+#import "CellCryptology.h"
+#import "XMLDictionary.h"
+
+#define KEY  @"cubeteam"
+#define DOCUMENT_PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 
 @interface SViewController ()
+{
+    NSMutableDictionary *_dataDic;
+    NSMutableArray *_servers;
+    NSMutableDictionary *_serverDic;
+    NSMutableArray *_sipServers;
+    NSMutableDictionary *_sipServerDic;
+    NSMutableArray *_iceServers;
+    NSMutableDictionary *_iceServerDic;
+    NSMutableArray *_permissions;
+    NSMutableDictionary *_companyDic;
+    NSString *_element;
+}
 
 @property (strong, nonatomic) IBOutlet UITextField *plainTextField;
 
@@ -21,8 +39,169 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+#pragma mark - DES
+    
+//    NSString *str = @"中华人民共和国万岁!!!";
+//    
+//    NSString *encrypeStr = [CryptUtils encryptWithText:str];
+//    
+//    NSLog(@"加密： %@", encrypeStr);
+//    
+//    NSString *decryptStr = [CryptUtils decryptWithText:encrypeStr];
+//    NSLog(@"解密： %@", decryptStr);
+    
+    
+    ///-----///
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"original" ofType:@"txt"];
+//    
+//    NSString *encryptStr = [CryptUtils encrptWithContentOf:path withKey:@"cubeengine"];
+//    
+//    NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
+//    
+//    NSString *docDir= [array objectAtIndex:0];
+//    
+//    NSString *fileName = @"cube.license";
+//    
+//    NSString *licensePath = [docDir stringByAppendingPathComponent:fileName];
+//    NSLog(@"licensePath  =  %@", licensePath);
+//    NSError *error;
+//    [encryptStr writeToFile:licensePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+//    if (nil == error) {
+//        NSLog(@"write file ok");
+//        NSLog(@"encryptStr = %@", encryptStr);
+//    }
+//    ///------///
+//    
+//    NSString *decrypt = [CryptUtils decrptWithContentOf:licensePath withKey:@"cubeengine"];
+//    
+//    NSLog(@"decrypt = %@", decrypt);
+//    
+//    NSString *fp = [[NSBundle mainBundle] pathForResource:@"cube" ofType:@"license"];
+//    
+//    NSString *testDecrypt = [CryptUtils decrptWithContentOf:fp withKey:@"cubeengine"];
+//    
+//    NSLog(@"testDecrypt = %@", testDecrypt);
+    
+#pragma - mark CCCrypt
+    char key[9] = {'c', 'u', 'b', 'e', 't', 'e', 'a', 'm', '\0'};
+    //加密
+     NSString *encrptFilePath = [[NSBundle mainBundle] pathForResource:@"original" ofType:@"txt"];
+    if (nil != encrptFilePath)
+    {
+        NSString *fileN = @"cube.license";
+        NSString *outPath = [DOCUMENT_PATH stringByAppendingPathComponent:fileN];
+        int len = [self encryptWithContentOfFile:encrptFilePath withKey:key withOutputFile:outPath];
+    }
+    
+    //解密
+    NSString *fileN = @"cube.license";
+    NSString *decryptFilePath = [DOCUMENT_PATH stringByAppendingPathComponent:fileN];
+    
+//    NSString *decryptFilePath = [[NSBundle mainBundle] pathForResource:@"cube" ofType:@"license"];
+    NSString *outPath;
+    if (nil != decryptFilePath)
+    {
+        NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docPath = [array objectAtIndex:0];
+        NSString *fileN = @"cube.xml";
+        outPath = [docPath stringByAppendingPathComponent:fileN];
+        NSLog(@"outPath = %@", outPath);
+        [self decryptWithContentOfFile:decryptFilePath withKey:key withOutputFile:outPath];
+    }
+#pragma mark - XMLDictionary
+    //XML 解析
+    NSDictionary *rootDic = [[XMLDictionaryParser sharedInstance] dictionaryWithFile:outPath];
+    
+    NSLog(@"rootDic.cout = %ld",  rootDic.count);
+    NSArray *cubeServers = [rootDic arrayValueForKeyPath:@"CubeServers"];
+    for (NSDictionary *dic in cubeServers)
+    {
+        NSDictionary *server = [dic dictionaryValueForKeyPath:@"CubeServer"];
+        NSString *port = [server stringValueForKeyPath:@"Port"];
+    }
+    NSDictionary *company = [rootDic dictionaryValueForKeyPath:@"Company"];
+    NSString *comName = [company stringValueForKeyPath:@"Name"];
+    NSString *appKey = [rootDic stringValueForKeyPath:@"AppKey"];
+    
+}
+- (int)encryptWithContentOfFile:(NSString *)path withKey:(char *)key withOutputFile:(NSString *)outPath
+{
+    
+    if (nil != path)
+    {
+        NSData *content = [[NSData alloc] initWithContentsOfFile:path];
+        const char *buffer = [content bytes];
+        int bufSize = content.length;
+        
+        char *output = malloc(bufSize + 1);
+        memset(output, 0x0, bufSize + 1);
+        
+        int outputLen =[[CCCryptology sharedSingleton] simpleEncrypt:output text:buffer length:bufSize key:key];
+        
+        if (outputLen > 0)
+        {
+            NSLog(@"Output length: %d", outputLen);
+            //            NSLog(@"encrypt.output = %s", output);
+        }
+        
+        if (nil != outPath)
+        {
+            //写文件
+            //获取文件指针
+            const char *cFilePath = [outPath UTF8String];
+            FILE *pFile = fopen(cFilePath, "w");
+            //向文件写数据
+            fwrite (output, 1, strlen(output),pFile);
+            
+            fflush(pFile);
+        }
+        
+        free(output);
+        
+        return outputLen;
+    }
+    return 0;
 }
 
+- (int)decryptWithContentOfFile:(NSString *)path withKey:(char *)key withOutputFile:(NSString *)outPath
+{
+    if (nil != path)
+    {
+        NSData *content = [[NSFileManager defaultManager] contentsAtPath:path];
+        const char * buffer = [content bytes];
+        
+        int bufSize = content.length;
+        
+        char *output = malloc(bufSize + 1);
+        memset(output, 0x0, bufSize + 1);
+        
+        //        char key[9] = {'c', 'u', 'b', 'e', 't', 'e', 'a', 'm', '\0'};
+        
+        int outputLen = [[CCCryptology sharedSingleton] simpleDecrypt:output text:buffer length:bufSize key:key];
+        
+        if (outputLen > 0)
+        {
+            NSLog(@"Output length: %d", outputLen);
+            //            NSLog(@"decrypt.output = %s", output);
+        }
+        
+        if (nil != outPath)
+        {
+            //写文件
+            //获取文件指针
+            const char *cFilePath = [outPath UTF8String];
+            FILE *pFile = fopen(cFilePath, "w");
+            //向文件写数据
+            fwrite (output, 1, strlen(output),pFile);
+            
+            fflush(pFile);
+        }
+        free(output);
+        return outputLen;
+    }
+    return 0;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -119,5 +298,6 @@
 {
     [textField resignFirstResponder];
 }
+
 
 @end

@@ -22,6 +22,14 @@
 		4A5B8E7E1991D8BF007D394F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A5B8E7C1991D8BF007D394F /* InfoPlist.strings */; };
 		4A5B8E801991D8BF007D394F /* AES256EncryptAndDecryptDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5B8E7F1991D8BF007D394F /* AES256EncryptAndDecryptDemoTests.m */; };
 		4A5B8E901991E3D2007D394F /* NSData+EncryptAndDecrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5B8E8F1991E3D2007D394F /* NSData+EncryptAndDecrypt.m */; };
+		EE476D071BCFA45800EA44C6 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = EE476D061BCFA45800EA44C6 /* GTMBase64.m */; };
+		EE476D0B1BCFA5D700EA44C6 /* CryptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EE476D0A1BCFA5D700EA44C6 /* CryptUtils.m */; };
+		EE476D0F1BCFC31600EA44C6 /* original.txt in Resources */ = {isa = PBXBuildFile; fileRef = EE476D0D1BCFC31600EA44C6 /* original.txt */; };
+		EE476D141BCFD1A100EA44C6 /* CellCryptology.m in Sources */ = {isa = PBXBuildFile; fileRef = EE476D131BCFD1A100EA44C6 /* CellCryptology.m */; };
+		EE476D211BD0EB4100EA44C6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE23304199208CD00C22B6D /* libz.dylib */; };
+		EE476D231BD0EB4C00EA44C6 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE476D221BD0EB4C00EA44C6 /* libxml2.dylib */; };
+		EE476D271BD1054800EA44C6 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EE476D261BD1054800EA44C6 /* XMLDictionary.m */; };
+		EE476D2D1BD1E11400EA44C6 /* cube.license in Resources */ = {isa = PBXBuildFile; fileRef = EE476D2C1BD1E11400EA44C6 /* cube.license */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +66,18 @@
 		4A5B8E8E1991E3D2007D394F /* NSData+EncryptAndDecrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+EncryptAndDecrypt.h"; sourceTree = "<group>"; };
 		4A5B8E8F1991E3D2007D394F /* NSData+EncryptAndDecrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+EncryptAndDecrypt.m"; sourceTree = "<group>"; };
 		4AE23304199208CD00C22B6D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		EE476D051BCFA45800EA44C6 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		EE476D061BCFA45800EA44C6 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		EE476D081BCFA4FC00EA44C6 /* GTMDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		EE476D091BCFA5D700EA44C6 /* CryptUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptUtils.h; sourceTree = "<group>"; };
+		EE476D0A1BCFA5D700EA44C6 /* CryptUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CryptUtils.m; sourceTree = "<group>"; };
+		EE476D0D1BCFC31600EA44C6 /* original.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = original.txt; sourceTree = "<group>"; };
+		EE476D121BCFD1A100EA44C6 /* CellCryptology.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellCryptology.h; sourceTree = "<group>"; };
+		EE476D131BCFD1A100EA44C6 /* CellCryptology.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellCryptology.m; sourceTree = "<group>"; };
+		EE476D221BD0EB4C00EA44C6 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		EE476D251BD1054800EA44C6 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
+		EE476D261BD1054800EA44C6 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
+		EE476D2C1BD1E11400EA44C6 /* cube.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.license; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE476D231BD0EB4C00EA44C6 /* libxml2.dylib in Frameworks */,
+				EE476D211BD0EB4100EA44C6 /* libz.dylib in Frameworks */,
 				4A5B8E571991D8BE007D394F /* CoreGraphics.framework in Frameworks */,
 				4A5B8E591991D8BE007D394F /* UIKit.framework in Frameworks */,
 				4A5B8E551991D8BE007D394F /* Foundation.framework in Frameworks */,
@@ -106,6 +128,7 @@
 		4A5B8E531991D8BE007D394F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EE476D221BD0EB4C00EA44C6 /* libxml2.dylib */,
 				4AE23304199208CD00C22B6D /* libz.dylib */,
 				4A5B8E8C1991D9F4007D394F /* libcommonCrypto.dylib */,
 				4A5B8E541991D8BE007D394F /* Foundation.framework */,
@@ -119,6 +142,11 @@
 		4A5B8E5A1991D8BE007D394F /* AES256EncryptAndDecryptDemo */ = {
 			isa = PBXGroup;
 			children = (
+				EE476D2F1BD1E14D00EA44C6 /* DESCrypt */,
+				EE476D2E1BD1E13B00EA44C6 /* CellCrypt */,
+				EE476D1C1BD0EB0000EA44C6 /* Library */,
+				EE476D2C1BD1E11400EA44C6 /* cube.license */,
+				EE476D0D1BCFC31600EA44C6 /* original.txt */,
 				4A5B8E631991D8BF007D394F /* SAppDelegate.h */,
 				4A5B8E641991D8BF007D394F /* SAppDelegate.m */,
 				4A5B8E661991D8BF007D394F /* Main.storyboard */,
@@ -159,6 +187,44 @@
 				4A5B8E7C1991D8BF007D394F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EE476D1C1BD0EB0000EA44C6 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				EE476D241BD1054800EA44C6 /* XMLDictionary */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		EE476D241BD1054800EA44C6 /* XMLDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				EE476D251BD1054800EA44C6 /* XMLDictionary.h */,
+				EE476D261BD1054800EA44C6 /* XMLDictionary.m */,
+			);
+			path = XMLDictionary;
+			sourceTree = "<group>";
+		};
+		EE476D2E1BD1E13B00EA44C6 /* CellCrypt */ = {
+			isa = PBXGroup;
+			children = (
+				EE476D121BCFD1A100EA44C6 /* CellCryptology.h */,
+				EE476D131BCFD1A100EA44C6 /* CellCryptology.m */,
+			);
+			name = CellCrypt;
+			sourceTree = "<group>";
+		};
+		EE476D2F1BD1E14D00EA44C6 /* DESCrypt */ = {
+			isa = PBXGroup;
+			children = (
+				EE476D051BCFA45800EA44C6 /* GTMBase64.h */,
+				EE476D061BCFA45800EA44C6 /* GTMBase64.m */,
+				EE476D081BCFA4FC00EA44C6 /* GTMDefines.h */,
+				EE476D091BCFA5D700EA44C6 /* CryptUtils.h */,
+				EE476D0A1BCFA5D700EA44C6 /* CryptUtils.m */,
+			);
+			name = DESCrypt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +305,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A5B8E6D1991D8BF007D394F /* Images.xcassets in Resources */,
+				EE476D0F1BCFC31600EA44C6 /* original.txt in Resources */,
+				EE476D2D1BD1E11400EA44C6 /* cube.license in Resources */,
 				4A5B8E5F1991D8BE007D394F /* InfoPlist.strings in Resources */,
 				4A5B8E681991D8BF007D394F /* Main.storyboard in Resources */,
 			);
@@ -261,8 +329,12 @@
 			files = (
 				4A5B8E651991D8BF007D394F /* SAppDelegate.m in Sources */,
 				4A5B8E6B1991D8BF007D394F /* SViewController.m in Sources */,
+				EE476D0B1BCFA5D700EA44C6 /* CryptUtils.m in Sources */,
+				EE476D071BCFA45800EA44C6 /* GTMBase64.m in Sources */,
 				4A5B8E901991E3D2007D394F /* NSData+EncryptAndDecrypt.m in Sources */,
 				4A5B8E611991D8BE007D394F /* main.m in Sources */,
+				EE476D141BCFD1A100EA44C6 /* CellCryptology.m in Sources */,
+				EE476D271BD1054800EA44C6 /* XMLDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +461,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AES256EncryptAndDecryptDemo/AES256EncryptAndDecryptDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDK_DIR)\"/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "AES256EncryptAndDecryptDemo/AES256EncryptAndDecryptDemo-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -406,6 +483,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AES256EncryptAndDecryptDemo/AES256EncryptAndDecryptDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDK_DIR)\"/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "AES256EncryptAndDecryptDemo/AES256EncryptAndDecryptDemo-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
